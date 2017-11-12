@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 14.00
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "WWIDW_manual", "WWIDW_manual\WWIDW_manual.ssmssqlproj", "{2A15922B-D8AA-4E87-B7AB-C9AC6FDFD6C5}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "WWIDW", "WWIDW\WWIDW.ssmssqlproj", "{810056F6-9E83-4F2B-BABE-3103ED098FEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A15922B-D8AA-4E87-B7AB-C9AC6FDFD6C5}.Default|Default.ActiveCfg = Default
+		{810056F6-9E83-4F2B-BABE-3103ED098FEC}.Default|Default.ActiveCfg = Default
+		{7BCB1AC5-BD4B-4A85-9699-1778C6C1D43F}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

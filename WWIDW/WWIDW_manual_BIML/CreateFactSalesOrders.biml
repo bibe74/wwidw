@@ -1,0 +1,22 @@
+<#@ template language="C#" hostspecific="true" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+<#@ include file="ProjectConnections.biml" #>
+
+	<!--
+	<#
+	string PackageName  = "LoadFactSalesOrders";
+	string DstSchemaName = "Fact";
+	string DstTableName = "SalesOrders";
+	string DstConnection = "AWBIML";
+	string DataFlowSourceName = "OLE_SRC StgFactSalesOrders";
+	string SrcConnection = "AWBIML";
+	string SourceQuery = @"SELECT * FROM Fact.SalesOrdersView";
+	#>
+	-->
+	
+    <Packages>
+        <#=CallBimlScript("Fact.biml", PackageName, DstSchemaName, DstTableName, DstConnection,
+        DataFlowSourceName, SrcConnection, SourceQuery)#>
+    </Packages>
+	
+</Biml>

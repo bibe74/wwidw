@@ -1,0 +1,33 @@
+<#@ template language="C#" hostspecific="true" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+<#@ include file="ProjectConnections.biml" #>
+
+	<!--
+	<#
+	string PackageName  = "LoadDimCustomer";
+	string DstSchemaName = "Dim";
+	string DstTableName = "Customer";
+	string DstConnection = "AWBIML";
+	string DataFlowSourceName = "OLE_SRC StgDimCustomer";
+	string SrcConnection = "AWBIML";
+	string SourceQuery = @"SELECT * FROM Dim.CustomerView";
+	string UpdateSchemaName = "Updt";
+	string UpdateTableName = "UpdtCustomer";
+	string UpdateConnection = "AWBIML";
+	string UpdateSQLStatement = @"UPDATE d 
+					SET 
+					d.CustomerName = u.CustomerName,
+					d.DeliveryCityKey = u.DeliveryCityKey,
+					d.changehashkey = u.changehashkey 
+					FROM Updt.UpdtCustomer u 
+					INNER JOIN Dim.Customer d ON u.HistoricalHashKey = d.HistoricalHashKey;";
+	#>
+	-->
+	
+    <Packages>
+        <#=CallBimlScript("Dim1.biml", PackageName, DstSchemaName, DstTableName, DstConnection,
+        DataFlowSourceName, SrcConnection, SourceQuery, UpdateSchemaName, UpdateTableName, 
+        UpdateConnection, UpdateSQLStatement)#>
+    </Packages>
+	
+</Biml>

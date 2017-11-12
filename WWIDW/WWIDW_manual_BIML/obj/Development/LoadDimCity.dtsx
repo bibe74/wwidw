@@ -1,0 +1,1551 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/12/2017 12:36:10 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="HARDY"
+  DTS:CreatorName="bs_turelli"
+  DTS:DTSID="{6A8D9289-F1B7-449B-9010-86E08BB1C0B2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3006.16"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LoadDimCity"
+  DTS:VersionGUID="{2E61D65F-7F27-4FE2-995B-39A294222144}"
+  DTS:VersionMajor="0">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{F36728CC-652B-4921-A94E-F663CAB1A999}"
+      DTS:ObjectName="ParentPackageID">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">00000000-0000-0000-0000-000000000000</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9042C808-44BF-4F0B-B199-AD9A0DA7A919}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;[&quot;+@[User::SchemaName]+&quot;].[&quot;+@[User::TableName]+&quot;]&quot;&#xA;        "
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="QualifiedTableSchema">
+      <DTS:VariableValue
+        DTS:DataType="8">[Dim].[City]</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4EBB8171-2EB8-44E8-8485-8A1189D384F7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="QueryAuditStart">
+      <DTS:VariableValue
+        DTS:DataType="8">
+          EXECUTE [Audit].[PackageControlStart] @PackageName=?, @PackageId=?, 
+          @ParentPackageId=?,@ExecutionId=?, @StartTime=?;
+        </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C84220DB-1AEF-405B-89EE-5F414D399CAA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="QueryAuditUpdate">
+      <DTS:VariableValue
+        DTS:DataType="8">
+          EXECUTE [Audit].[PackageControlStop] @PackageId=?, @ExecutionId=?, 
+          @InsertRowQuantity=?, @UpdateRowQuantity=?, @UnchangedRowQuantity=?;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{89189961-FF85-492B-8F38-0882ECCF110B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountChanged">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{118123A6-3D4B-463B-9FDD-A5373C811436}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountNew">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3602DAA3-665E-4275-AFEA-43422135526C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountSource">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0F3EFBDA-AE92-4C23-B796-0EF13AF73AC5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountUnchanged">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{364D0C8D-DC5C-4D0D-8078-D8416E11C31B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8">Dim</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{54D640B6-FA66-4797-B5E3-8CFDBAFD1DA7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8">City</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT InsertCity"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DTSID="{B2AD54F5-91CA-4E93-BD0A-579B84618018}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT InsertCity"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT InsertCity\CNT Changed_Rows"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              name="CNT Changed_Rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCountChanged</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCity\CNT Changed_Rows.Inputs[CSPL Check For Changes_ChangedRows_CNT Changed_Rows]"
+                  hasSideEffects="true"
+                  name="CSPL Check For Changes_ChangedRows_CNT Changed_Rows">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCity\CNT Changed_Rows.Outputs[Output]"
+                  name="Output"
+                  synchronousInputId="Package\DFT InsertCity\CNT Changed_Rows.Inputs[CSPL Check For Changes_ChangedRows_CNT Changed_Rows]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCity\CNT New_Rows"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              name="CNT New_Rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCountNew</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCity\CNT New_Rows.Inputs[LKP Historical Key_NoMatch_CNT New_Rows]"
+                  hasSideEffects="true"
+                  name="LKP Historical Key_NoMatch_CNT New_Rows">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCity\CNT New_Rows.Outputs[Output]"
+                  name="Output"
+                  synchronousInputId="Package\DFT InsertCity\CNT New_Rows.Inputs[LKP Historical Key_NoMatch_CNT New_Rows]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCity\CNT Source_Rows"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              name="CNT Source_Rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCountSource</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCity\CNT Source_Rows.Inputs[OLE_SRC StgDimCity_Output_CNT Source_Rows]"
+                  hasSideEffects="true"
+                  name="OLE_SRC StgDimCity_Output_CNT Source_Rows">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCity\CNT Source_Rows.Outputs[Output]"
+                  name="Output"
+                  synchronousInputId="Package\DFT InsertCity\CNT Source_Rows.Inputs[OLE_SRC StgDimCity_Output_CNT Source_Rows]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCity\CNT Unchanged_Rows"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              name="CNT Unchanged_Rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCountUnchanged</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCity\CNT Unchanged_Rows.Inputs[CSPL Check For Changes_Default_CNT Unchanged_Rows]"
+                  hasSideEffects="true"
+                  name="CSPL Check For Changes_Default_CNT Unchanged_Rows">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCity\CNT Unchanged_Rows.Outputs[Output]"
+                  name="Output"
+                  synchronousInputId="Package\DFT InsertCity\CNT Unchanged_Rows.Inputs[CSPL Check For Changes_Default_CNT Unchanged_Rows]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCity\CSPL Check For Changes"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              name="CSPL Check For Changes"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCity\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes]"
+                  name="LKP Historical Key_Match_CSPL Check For Changes">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT InsertCity\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes].Columns[ChangeHashKeyASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="34"
+                      cachedName="ChangeHashKeyASCII"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[ChangeHashKeyASCII]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes].Columns[lkp_ChangeHashKeyASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="34"
+                      cachedName="lkp_ChangeHashKeyASCII"
+                      lineageId="Package\DFT InsertCity\LKP Historical Key.Outputs[Match].Columns[lkp_ChangeHashKeyASCII]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCity\CSPL Check For Changes.Outputs[ChangedRows]"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="ChangedRows"
+                  synchronousInputId="Package\DFT InsertCity\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      name="Expression">#{Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[ChangeHashKeyASCII]} != #{Package\DFT InsertCity\LKP Historical Key.Outputs[Match].Columns[lkp_ChangeHashKeyASCII]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="FriendlyExpression">ChangeHashKeyASCII != lkp_ChangeHashKeyASCII</property>
+                    <property
+                      dataType="System.Int32"
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT InsertCity\CSPL Check For Changes.Outputs[Default]"
+                  exclusionGroup="1"
+                  name="Default"
+                  synchronousInputId="Package\DFT InsertCity\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT InsertCity\CSPL Check For Changes.Outputs[Error]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error"
+                  synchronousInputId="Package\DFT InsertCity\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCity\CSPL Check For Changes.Outputs[Error].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\CSPL Check For Changes.Outputs[Error].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\CSPL Check For Changes.Outputs[Error].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\CSPL Check For Changes.Outputs[Error].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCity\LKP Historical Key"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              name="LKP Historical Key"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+                      CONVERT(VARCHAR(34), ChangeHashKey, 1) AS ChangeHashKeyASCII
+                      , CONVERT(VARCHAR(34), HistoricalHashKey, 1) AS HistoricalHashKeyASCII
+                      FROM
+                      Dim.City</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+                     CONVERT(VARCHAR(34), ChangeHashKey, 1) AS ChangeHashKeyASCII
+                     , CONVERT(VARCHAR(34), HistoricalHashKey, 1) AS HistoricalHashKeyASCII
+                     FROM
+                     Dim.City) [refTable]
+                     where [refTable].[HistoricalHashKeyASCII] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;
+  &lt;referenceColumns&gt;
+    &lt;referenceColumn name="ChangeHashKeyASCII" dataType="DT_STR" length="34" precision="0" scale="0" codePage="1252" /&gt;
+    &lt;referenceColumn name="HistoricalHashKeyASCII" dataType="DT_STR" length="34" precision="0" scale="0" codePage="1252" /&gt;
+  &lt;/referenceColumns&gt;
+&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[HistoricalHashKeyASCII]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT InsertCity\LKP Historical Key.Connections[OleDbConnection]"
+                  connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AWBIML]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCity\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]"
+                  name="CNT Source_Rows_Output_LKP Historical Key">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT InsertCity\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key].Columns[HistoricalHashKeyASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="34"
+                      cachedName="HistoricalHashKeyASCII"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[HistoricalHashKeyASCII]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">HistoricalHashKeyASCII</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCity\LKP Historical Key.Outputs[Match]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Match"
+                  synchronousInputId="Package\DFT InsertCity\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCity\LKP Historical Key.Outputs[Match].Columns[lkp_ChangeHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="CopyColumn"
+                      length="34"
+                      lineageId="Package\DFT InsertCity\LKP Historical Key.Outputs[Match].Columns[lkp_ChangeHashKeyASCII]"
+                      name="lkp_ChangeHashKeyASCII"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ChangeHashKeyASCII</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT InsertCity\LKP Historical Key.Outputs[NoMatch]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="NoMatch"
+                  synchronousInputId="Package\DFT InsertCity\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT InsertCity\LKP Historical Key.Outputs[Error]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error"
+                  synchronousInputId="Package\DFT InsertCity\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCity\LKP Historical Key.Outputs[Error].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\LKP Historical Key.Outputs[Error].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\LKP Historical Key.Outputs[Error].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\LKP Historical Key.Outputs[Error].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCity\OLE_DST New_Rows"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              name="OLE_DST New_Rows"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Dim.City</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT InsertCity\OLE_DST New_Rows.Connections[OleDbConnection]"
+                  connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AWBIML]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="CNT New_Rows_Output_OLE_DST New_Rows">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[CityID]"
+                      cachedDataType="i4"
+                      cachedName="CityID"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CityID]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CityID]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[CityName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CityName"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CityName]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CityName]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[StateProvinceCode]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="StateProvinceCode"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[StateProvinceCode]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[StateProvinceCode]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[StateProvinceName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StateProvinceName"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[StateProvinceName]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[StateProvinceName]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[CountryName]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="CountryName"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CountryName]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CountryName]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[Region]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Region"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[Region]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[Region]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[Subregion]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Subregion"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[Subregion]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[Subregion]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[HistoricalHashKey]"
+                      cachedDataType="bytes"
+                      cachedLength="20"
+                      cachedName="HistoricalHashKey"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[HistoricalHashKey]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[HistoricalHashKey]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[ChangeHashKey]"
+                      cachedDataType="bytes"
+                      cachedLength="20"
+                      cachedName="ChangeHashKey"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[ChangeHashKey]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[ChangeHashKey]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[HistoricalHashKeyASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="34"
+                      cachedName="HistoricalHashKeyASCII"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[HistoricalHashKeyASCII]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[HistoricalHashKeyASCII]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[ChangeHashKeyASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="34"
+                      cachedName="ChangeHashKeyASCII"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[ChangeHashKeyASCII]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[ChangeHashKeyASCII]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[InsertDttm]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InsertDttm"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[InsertDttm]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[InsertDttm]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[UpdateDttm]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UpdateDttm"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[UpdateDttm]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[UpdateDttm]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CityKey]"
+                      dataType="i4"
+                      name="CityKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CityID]"
+                      dataType="i4"
+                      name="CityID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CityName]"
+                      dataType="wstr"
+                      length="50"
+                      name="CityName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[StateProvinceCode]"
+                      dataType="wstr"
+                      length="7"
+                      name="StateProvinceCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[StateProvinceName]"
+                      dataType="wstr"
+                      length="50"
+                      name="StateProvinceName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CountryName]"
+                      dataType="wstr"
+                      length="60"
+                      name="CountryName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="30"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[Subregion]"
+                      dataType="wstr"
+                      length="30"
+                      name="Subregion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[HistoricalHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="HistoricalHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[ChangeHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="ChangeHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[HistoricalHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      name="HistoricalHashKeyASCII" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[ChangeHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      name="ChangeHashKeyASCII" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[InsertDttm]"
+                      dataType="dbTimeStamp"
+                      name="InsertDttm" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[UpdateDttm]"
+                      dataType="dbTimeStamp"
+                      name="UpdateDttm" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCity\OLE_DST New_Rows.Outputs[Error]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error"
+                  synchronousInputId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Outputs[Error].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\OLE_DST New_Rows.Outputs[Error].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_DST New_Rows.Outputs[Error].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\OLE_DST New_Rows.Outputs[Error].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCity\OLE_DST Update Table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              name="OLE_DST Update Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Updt].[UpdtCity]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT InsertCity\OLE_DST Update Table.Connections[OleDbConnection]"
+                  connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AWBIML]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="CNT Changed_Rows_Output_OLE_DST Update Table">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[CityID]"
+                      cachedDataType="i4"
+                      cachedName="CityID"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[CityID]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CityID]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[CityName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CityName"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[CityName]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CityName]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[StateProvinceCode]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="StateProvinceCode"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[StateProvinceCode]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[StateProvinceCode]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[StateProvinceName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StateProvinceName"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[StateProvinceName]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[StateProvinceName]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[CountryName]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="CountryName"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[CountryName]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CountryName]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[Region]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Region"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[Region]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[Region]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[Subregion]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Subregion"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[Subregion]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[Subregion]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[HistoricalHashKey]"
+                      cachedDataType="bytes"
+                      cachedLength="20"
+                      cachedName="HistoricalHashKey"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[HistoricalHashKey]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[HistoricalHashKey]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[ChangeHashKey]"
+                      cachedDataType="bytes"
+                      cachedLength="20"
+                      cachedName="ChangeHashKey"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[ChangeHashKey]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[ChangeHashKey]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[InsertDttm]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InsertDttm"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[InsertDttm]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[InsertDttm]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[CityID]"
+                      dataType="i4"
+                      name="CityID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[HistoricalHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="HistoricalHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[ChangeHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="ChangeHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[CityName]"
+                      dataType="wstr"
+                      length="50"
+                      name="CityName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[StateProvinceCode]"
+                      dataType="wstr"
+                      length="7"
+                      name="StateProvinceCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[StateProvinceName]"
+                      dataType="wstr"
+                      length="50"
+                      name="StateProvinceName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[CountryName]"
+                      dataType="wstr"
+                      length="60"
+                      name="CountryName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="30"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[Subregion]"
+                      dataType="wstr"
+                      length="30"
+                      name="Subregion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[InsertDttm]"
+                      dataType="dbTimeStamp"
+                      name="InsertDttm" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCity\OLE_DST Update Table.Outputs[Error]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error"
+                  synchronousInputId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Outputs[Error].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\OLE_DST Update Table.Outputs[Error].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_DST Update Table.Outputs[Error].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\OLE_DST Update Table.Outputs[Error].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCity\OLE_SRC StgDimCity"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              name="OLE_SRC StgDimCity"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM Dim.CityView</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Connections[OleDbConnection]"
+                  connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AWBIML]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output]"
+                  name="Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CityID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[CityID]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CityID]"
+                      name="CityID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CityName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[CityName]"
+                      length="50"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CityName]"
+                      name="CityName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[StateProvinceCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[StateProvinceCode]"
+                      length="7"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[StateProvinceCode]"
+                      name="StateProvinceCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[StateProvinceName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[StateProvinceName]"
+                      length="50"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[StateProvinceName]"
+                      name="StateProvinceName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CountryName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[CountryName]"
+                      length="60"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[CountryName]"
+                      name="CountryName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[Region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[Region]"
+                      length="30"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[Region]"
+                      name="Region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[Subregion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[Subregion]"
+                      length="30"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[Subregion]"
+                      name="Subregion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[HistoricalHashKey]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[HistoricalHashKey]"
+                      length="20"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[HistoricalHashKey]"
+                      name="HistoricalHashKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[ChangeHashKey]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[ChangeHashKey]"
+                      length="20"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[ChangeHashKey]"
+                      name="ChangeHashKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[HistoricalHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[HistoricalHashKeyASCII]"
+                      length="34"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[HistoricalHashKeyASCII]"
+                      name="HistoricalHashKeyASCII"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[ChangeHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[ChangeHashKeyASCII]"
+                      length="34"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[ChangeHashKeyASCII]"
+                      name="ChangeHashKeyASCII"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[InsertDttm]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[InsertDttm]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[InsertDttm]"
+                      name="InsertDttm"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[UpdateDttm]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[UpdateDttm]"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].Columns[UpdateDttm]"
+                      name="UpdateDttm"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[CityID]"
+                      dataType="i4"
+                      name="CityID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[CityName]"
+                      dataType="wstr"
+                      length="50"
+                      name="CityName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[StateProvinceCode]"
+                      dataType="wstr"
+                      length="7"
+                      name="StateProvinceCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[StateProvinceName]"
+                      dataType="wstr"
+                      length="50"
+                      name="StateProvinceName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[CountryName]"
+                      dataType="wstr"
+                      length="60"
+                      name="CountryName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="30"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[Subregion]"
+                      dataType="wstr"
+                      length="30"
+                      name="Subregion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[HistoricalHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="HistoricalHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[ChangeHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="ChangeHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[HistoricalHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      name="HistoricalHashKeyASCII" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[ChangeHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      name="ChangeHashKeyASCII" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[InsertDttm]"
+                      dataType="dbTimeStamp"
+                      name="InsertDttm" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output].ExternalColumns[UpdateDttm]"
+                      dataType="dbTimeStamp"
+                      name="UpdateDttm" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error]"
+                  isErrorOut="true"
+                  name="Error">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[CityID]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[CityID]"
+                      name="CityID" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[CityName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[CityName]"
+                      name="CityName" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[StateProvinceCode]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[StateProvinceCode]"
+                      name="StateProvinceCode" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[StateProvinceName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[StateProvinceName]"
+                      name="StateProvinceName" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[CountryName]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[CountryName]"
+                      name="CountryName" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[Region]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[Region]"
+                      name="Region" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[Subregion]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[Subregion]"
+                      name="Subregion" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[HistoricalHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[HistoricalHashKey]"
+                      name="HistoricalHashKey" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[ChangeHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[ChangeHashKey]"
+                      name="ChangeHashKey" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[HistoricalHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[HistoricalHashKeyASCII]"
+                      name="HistoricalHashKeyASCII" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[ChangeHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[ChangeHashKeyASCII]"
+                      name="ChangeHashKeyASCII" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[InsertDttm]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[InsertDttm]"
+                      name="InsertDttm" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[UpdateDttm]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[UpdateDttm]"
+                      name="UpdateDttm" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Error].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT InsertCity.Paths[CNT Changed_Rows_Output_OLE_DST Update Table]"
+              endId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table]"
+              name="CNT Changed_Rows_Output_OLE_DST Update Table"
+              startId="Package\DFT InsertCity\CNT Changed_Rows.Outputs[Output]" />
+            <path
+              refId="Package\DFT InsertCity.Paths[CNT New_Rows_Output_OLE_DST New_Rows]"
+              endId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows]"
+              name="CNT New_Rows_Output_OLE_DST New_Rows"
+              startId="Package\DFT InsertCity\CNT New_Rows.Outputs[Output]" />
+            <path
+              refId="Package\DFT InsertCity.Paths[CNT Source_Rows_Output_LKP Historical Key]"
+              endId="Package\DFT InsertCity\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]"
+              name="CNT Source_Rows_Output_LKP Historical Key"
+              startId="Package\DFT InsertCity\CNT Source_Rows.Outputs[Output]" />
+            <path
+              refId="Package\DFT InsertCity.Paths[CSPL Check For Changes_ChangedRows_CNT Changed_Rows]"
+              endId="Package\DFT InsertCity\CNT Changed_Rows.Inputs[CSPL Check For Changes_ChangedRows_CNT Changed_Rows]"
+              name="CSPL Check For Changes_ChangedRows_CNT Changed_Rows"
+              startId="Package\DFT InsertCity\CSPL Check For Changes.Outputs[ChangedRows]" />
+            <path
+              refId="Package\DFT InsertCity.Paths[CSPL Check For Changes_Default_CNT Unchanged_Rows]"
+              endId="Package\DFT InsertCity\CNT Unchanged_Rows.Inputs[CSPL Check For Changes_Default_CNT Unchanged_Rows]"
+              name="CSPL Check For Changes_Default_CNT Unchanged_Rows"
+              startId="Package\DFT InsertCity\CSPL Check For Changes.Outputs[Default]" />
+            <path
+              refId="Package\DFT InsertCity.Paths[LKP Historical Key_Match_CSPL Check For Changes]"
+              endId="Package\DFT InsertCity\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes]"
+              name="LKP Historical Key_Match_CSPL Check For Changes"
+              startId="Package\DFT InsertCity\LKP Historical Key.Outputs[Match]" />
+            <path
+              refId="Package\DFT InsertCity.Paths[LKP Historical Key_NoMatch_CNT New_Rows]"
+              endId="Package\DFT InsertCity\CNT New_Rows.Inputs[LKP Historical Key_NoMatch_CNT New_Rows]"
+              name="LKP Historical Key_NoMatch_CNT New_Rows"
+              startId="Package\DFT InsertCity\LKP Historical Key.Outputs[NoMatch]" />
+            <path
+              refId="Package\DFT InsertCity.Paths[OLE_SRC StgDimCity_Output_CNT Source_Rows]"
+              endId="Package\DFT InsertCity\CNT Source_Rows.Inputs[OLE_SRC StgDimCity_Output_CNT Source_Rows]"
+              name="OLE_SRC StgDimCity_Output_CNT Source_Rows"
+              startId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Begin Audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{A85FFDC1-2E81-4517-9B3E-E4BFB613C22C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Begin Audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3A3DCF92-D4BC-48B0-99C2-73A2CB3377EE}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::QueryAuditStart" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="72"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="$Package::ParentPackageID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="72"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="System::StartTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Close Audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{C23ECD53-D29F-4B8A-96AA-1C1D0897E66A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Close Audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3A3DCF92-D4BC-48B0-99C2-73A2CB3377EE}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::QueryAuditUpdate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="72"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowCountNew"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::RowCountChanged"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="User::RowCountUnchanged"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Truncate UpdtCity"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{DAB40165-515A-4C0C-8DCA-AFB5358E9EE7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Truncate UpdtCity"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A00915BD-5964-4CEB-B8CF-61297307E46B}"
+          SQLTask:SqlStatementSource="Truncate Table [Updt].[UpdtCity]&#xA;            " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Update City"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{BE5DA2D6-E39B-403F-B7C3-B8D4930ADFD3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Update City"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A00915BD-5964-4CEB-B8CF-61297307E46B}"
+          SQLTask:SqlStatementSource="UPDATE d &#xA;     SET &#xA;     d.CityName = u.CityName,&#xA;     d.StateProvinceCode = u.StateProvinceCode,&#xA;     d.StateProvinceName = u.StateProvinceName,&#xA;     d.CountryName = u.CountryName,&#xA;     d.Region = u.Region,&#xA;     d.Subregion = u.Subregion,&#xA;     d.changehashkey = u.changehashkey &#xA;     FROM Updt.UpdtCity u &#xA;     INNER JOIN Dim.City d ON u.HistoricalHashKey = d.HistoricalHashKey;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_DFT InsertCity_To_SQL Update City]"
+      DTS:CreationName=""
+      DTS:DTSID="{75267139-9ACB-40CE-AC97-43C9B7040544}"
+      DTS:From="Package\DFT InsertCity"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_DFT InsertCity_To_SQL Update City"
+      DTS:To="Package\SQL Update City" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Begin Audit_To_SQL Truncate UpdtCity]"
+      DTS:CreationName=""
+      DTS:DTSID="{857D1B5B-512E-4F32-A338-FEF11BB910C8}"
+      DTS:From="Package\SQL Begin Audit"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_SQL Begin Audit_To_SQL Truncate UpdtCity"
+      DTS:To="Package\SQL Truncate UpdtCity" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Truncate UpdtCity_To_DFT InsertCity]"
+      DTS:CreationName=""
+      DTS:DTSID="{B3AD9291-24BC-4B64-A5E4-DE93AF490CB5}"
+      DTS:From="Package\SQL Truncate UpdtCity"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_SQL Truncate UpdtCity_To_DFT InsertCity"
+      DTS:To="Package\DFT InsertCity" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Update City_To_SQL Close Audit]"
+      DTS:CreationName=""
+      DTS:DTSID="{F48BEC80-FAC0-42B7-8808-D96A3316B2EA}"
+      DTS:From="Package\SQL Update City"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_SQL Update City_To_SQL Close Audit"
+      DTS:To="Package\SQL Close Audit" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

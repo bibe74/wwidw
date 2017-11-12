@@ -1,0 +1,5 @@
+<#@ template language="C#" tier="1" #>	
+<Connections>
+    <OleDbConnection Name="AWBIML" ConnectionString ="Data Source=localhost\SQL2017;Initial Catalog=WWIDW_manual;Integrated Security=SSPI;Provider=SQLNCLI11.1;" CreateInProject="true"/>
+    <OleDbConnection Name="Audit" ConnectionString ="Data Source=localhost\SQL2017;Initial Catalog=WWIDW_manual;Integrated Security=SSPI;Provider=SQLNCLI11.1;" CreateInProject="true"/>	
+</Connections>

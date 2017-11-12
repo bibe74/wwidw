@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="WWIDW_manual">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="(local)\SQL2017:METRA\bs_turelli">
+          <Created>2017-11-12T09:23:40.501675+01:00</Created>
+          <Type>SQL</Type>
+          <Server>(local)\SQL2017</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>WWIDW</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="00-wideworldimporters-setup.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>00-wideworldimporters-setup.sql</FullPath>
+        </FileNode>
+        <FileNode Name="01-wideworldimporters-discovery.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>01-wideworldimporters-discovery.sql</FullPath>
+        </FileNode>
+        <FileNode Name="10-wwidw_manual-create-database.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>10-wwidw_manual-create-database.sql</FullPath>
+        </FileNode>
+        <FileNode Name="11-wwidw_manual-setup-Staging.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>11-wwidw_manual-setup-Staging.sql</FullPath>
+        </FileNode>
+        <FileNode Name="12-wwidw_manual-setup-Dim.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>12-wwidw_manual-setup-Dim.sql</FullPath>
+        </FileNode>
+        <FileNode Name="13-wwidw_manual-setup-Fact.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>13-wwidw_manual-setup-Fact.sql</FullPath>
+        </FileNode>
+        <FileNode Name="14-wwidw_manual-setup-Updt.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>14-wwidw_manual-setup-Updt.sql</FullPath>
+        </FileNode>
+        <FileNode Name="15-wwidw_manual-setup-Audit.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>15-wwidw_manual-setup-Audit.sql</FullPath>
+        </FileNode>
+        <FileNode Name="21-wwidw_manual-initial-load.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>21-wwidw_manual-initial-load.sql</FullPath>
+        </FileNode>
+        <FileNode Name="22-wideworldimporters-activity.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>22-wideworldimporters-activity.sql</FullPath>
+        </FileNode>
+        <FileNode Name="23-wwidw_manual-incremental-load.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local)\SQL2017:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)\SQL2017</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>23-wwidw_manual-incremental-load.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

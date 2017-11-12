@@ -1,0 +1,142 @@
+<#@ template language="C#" tier="2" #>
+
+<#@ property name="PackageName" type="String" #>
+<#@ property name="DstSchemaName" type="String" #>
+<#@ property name="DstTableName" type="String" #>
+<#@ property name="DstConnection" type="String" #>
+<#@ property name="DataFlowSourceName" type="String" #>
+<#@ property name="SrcConnection" type="String" #>
+<#@ property name="SourceQuery" type="String" #>	
+
+<Package Name="<#=PackageName#>" Language="None" ProtectionLevel="EncryptSensitiveWithUserKey">
+    <Parameters>
+        <Parameter DataType="String" Name="ParentPackageID">00000000-0000-0000-0000-000000000000</Parameter>
+    </Parameters>
+    <Variables>
+        <Variable EvaluateAsExpression="true" DataType="String"  
+          Name="QualifiedTableSchema">"["+@[User::SchemaName]+"].["+@[User::TableName]+"]"
+        </Variable>
+        <Variable DataType="String" Name="QueryAuditStart">
+          EXECUTE [Audit].[PackageControlStart] @PackageName=?, @PackageId=?, 
+          @ParentPackageId=?,@ExecutionId=?, @StartTime=?;
+        </Variable>
+        <Variable DataType="String" Name="QueryAuditUpdate">
+          EXECUTE [Audit].[PackageControlStop] @PackageId=?, @ExecutionId=?, 
+          @InsertRowQuantity=?, @UpdateRowQuantity=?, @UnchangedRowQuantity=?;</Variable> 
+        <Variable DataType="Int32"  Name="RowCountChanged">0</Variable>
+        <Variable DataType="Int32"  Name="RowCountNew">0</Variable>
+        <Variable DataType="Int32"  Name="RowCountSource">0</Variable>
+        <Variable DataType="Int32"  Name="RowCountUnchanged">0</Variable>
+        <Variable DataType="String" Name="SchemaName"><#=DstSchemaName#></Variable>
+        <Variable DataType="String" Name="TableName"><#=DstTableName#></Variable>
+    </Variables>
+    
+    <Tasks>
+      <ExecuteSQL Name="SQL Begin Audit" ConnectionName="Audit">
+       <VariableInput VariableName="User.QueryAuditStart" />
+        <Parameters>
+          <Parameter Name="0" VariableName="System.PackageName" DataType="String" Length="-1"/>
+          <Parameter Name="1" VariableName="System.PackageID" DataType="Guid" Length="-1"/>
+          <Parameter Name="2" VariableName="ParentPackageID" DataType="Guid" Length="-1"/>
+          <Parameter Name="3" VariableName="System.ServerExecutionID" DataType="Int64" 
+            Length="-1"/>
+          <Parameter Name="4" VariableName="System.StartTime" DataType="Date" Length="-1"/>
+        </Parameters>
+      </ExecuteSQL>
+
+        <Dataflow Name="DFT Insert<#=DstTableName#>">
+            
+            <Transformations>
+            
+                <RowCount Name="CNT Changed_Rows" VariableName="User.RowCountChanged">
+                    <InputPath OutputPathName="CSPL Check For Changes.ChangedRows" />
+                </RowCount>
+                
+                <ConditionalSplit Name="CSPL Check For Changes">
+                    <InputPath OutputPathName="LKP Historical Key.Match" />
+                    <OutputPaths>
+                        <OutputPath Name="ChangedRows">
+                          <Expression>ChangeHashKeyASCII != lkp_ChangeHashKeyASCII</Expression>
+                        </OutputPath>
+                    </OutputPaths>
+                </ConditionalSplit>
+                
+                <RowCount Name="CNT New_Rows" VariableName="User.RowCountNew">
+                    <InputPath OutputPathName="LKP Historical Key.NoMatch" />
+                </RowCount>
+        
+                <Lookup Name="LKP Historical Key" NoMatchBehavior="RedirectRowsToNoMatchOutput" 
+                  OleDbConnectionName="<#=DstConnection#>">
+                    <DirectInput>SELECT
+                      CONVERT(VARCHAR(34), ChangeHashKey, 1) AS ChangeHashKeyASCII
+                      , CONVERT(VARCHAR(34), HistoricalHashKey, 1) AS HistoricalHashKeyASCII
+                      FROM
+                      <#=DstSchemaName#>.<#=DstTableName#></DirectInput>
+                   <Parameters>
+                     <Parameter SourceColumn="HistoricalHashKeyASCII" />
+                   </Parameters>
+	           <ParameterizedQuery>select * from (SELECT
+                     CONVERT(VARCHAR(34), ChangeHashKey, 1) AS ChangeHashKeyASCII
+                     , CONVERT(VARCHAR(34), HistoricalHashKey, 1) AS HistoricalHashKeyASCII
+                     FROM
+                     <#=DstSchemaName#>.<#=DstTableName#>) [refTable]
+                     where [refTable].[HistoricalHashKeyASCII] = ?</ParameterizedQuery>
+                  <InputPath OutputPathName="CNT Source_Rows.Output" />
+                  <Inputs>
+                    <Column SourceColumn="HistoricalHashKeyASCII" 
+                      TargetColumn="HistoricalHashKeyASCII" />
+                  </Inputs>
+                  <Outputs>
+                    <Column SourceColumn="ChangeHashKeyASCII" 
+                    TargetColumn="lkp_ChangeHashKeyASCII" />
+                  </Outputs>
+                </Lookup>
+       
+            <OleDbDestination Name="OLE_DST New_Rows" ConnectionName="<#=DstConnection#>">
+              <InputPath OutputPathName="CNT New_Rows.Output" />
+	      <ExternalTableOutput Table="<#=DstSchemaName#>.<#=DstTableName#>" /> 
+            </OleDbDestination>
+            
+            <RowCount Name="CNT Source_Rows" VariableName="User.RowCountSource">
+              <InputPath OutputPathName="<#=DataFlowSourceName#>.Output" />
+            </RowCount>
+            
+            <OleDbSource Name="<#=DataFlowSourceName#>" ConnectionName="<#=SrcConnection#>">
+	      <DirectInput><#=SourceQuery#></DirectInput>
+            </OleDbSource>
+               
+            <RowCount Name="CNT Unchanged_Rows" VariableName="User.RowCountUnchanged">
+              <InputPath OutputPathName="CSPL Check For Changes.Default" />
+            </RowCount>
+                
+     </Transformations>
+    
+     <PrecedenceConstraints>
+      <Inputs>
+              <Input OutputPathName="SQL Begin Audit.Output" />
+      </Inputs>
+     </PrecedenceConstraints>
+    </Dataflow>
+            
+    <ExecuteSQL Name="SQL Close Audit" ConnectionName="Audit">
+      <VariableInput VariableName="User.QueryAuditUpdate" />
+        <Parameters>
+          <Parameter Name="0" VariableName="System.PackageID" DataType="Guid" Length="-1"/>
+          <Parameter Name="1" VariableName="System.ServerExecutionID" DataType="Int64"
+            Length="-1"/>
+          <Parameter Name="2" VariableName="User.RowCountNew" DataType="Int32" Length="-1"/>
+          <Parameter Name="3" VariableName="User.RowCountChanged" DataType="Int32" 
+            Length="-1"/>
+          <Parameter Name="4" VariableName="User.RowCountUnchanged" DataType="Int32" 
+            Length="-1"/>
+        </Parameters>
+        <PrecedenceConstraints>
+          <Inputs>
+            <Input OutputPathName="DFT Insert<#=DstTableName#>.Output" /> 
+          </Inputs>
+        </PrecedenceConstraints>
+    </ExecuteSQL>
+				    
+  </Tasks>
+
+</Package>
