@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="AWBIML" DTS:DTSID="{A00915BD-5964-4CEB-B8CF-61297307E46B}" DTS:refId="Package.ConnectionManagers[AWBIML]" DTS:CreationName="OLEDB">
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="WWIDW" DTS:DTSID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}" DTS:refId="Package.ConnectionManagers[WWIDW]" DTS:CreationName="OLEDB">
   <DTS:ObjectData>
     <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="data source=localhost\SQL2017;initial catalog=WWIDW_manual;integrated security=SSPI;provider=SQLNCLI11.1"></DTS:ConnectionManager>
   </DTS:ObjectData>

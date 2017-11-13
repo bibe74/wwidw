@@ -34,11 +34,17 @@ SELECT * FROM Dim.City;
 SELECT * FROM Dim.Customer;
 GO
 
-/* Execute SSIS packages: LoadDimCity.dtsx, LoadDimCustomer.dtsx */
+/* Generate SSIS packages from: 01-CreateDimCity.biml, 02-CreateDimCustomer.biml, 11-CreateFactSalesOrders.biml */
+
+/* Execute SSIS packages: 01-LoadDimCity.dtsx, 02-LoadDimCustomer.dtsx, 11-LoadFactSalesOrders.dtsx */
 
 /* Check the content of the dimension tables */
 SELECT * FROM Dim.City;
 SELECT * FROM Dim.Customer;
+GO
+
+/* Check the content of the fact table */
+SELECT * FROM Fact.SalesOrders;
 GO
 
 /* Check the audit log */
@@ -151,7 +157,7 @@ SELECT
 FROM WideWorldImporters.Sales.OrderLines;
 GO
 
-/* Execute SSIS packages: LoadDimCity.dtsx, LoadDimCustomer.dtsx, LoadFactSalesOrders.dtsx */
+/* Execute SSIS packages: 01-LoadDimCity.dtsx, 02-LoadDimCustomer.dtsx, 11-LoadFactSalesOrders.dtsx */
 
 /* Check the content of the dimension and fact tables */
 SELECT * FROM Dim.City;

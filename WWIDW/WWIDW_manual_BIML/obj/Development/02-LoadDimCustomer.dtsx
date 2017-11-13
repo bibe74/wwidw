@@ -1,0 +1,1364 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/12/2017 10:28:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="HARDY"
+  DTS:CreatorName="bs_turelli"
+  DTS:DTSID="{E5CF1961-8530-4072-81C5-E6C5D897876C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3006.16"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="02-LoadDimCustomer"
+  DTS:VersionGUID="{FB0E48CE-5E97-475C-B8D1-81C18385D3B1}"
+  DTS:VersionMajor="0">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{677367DF-4B75-45F7-8E24-11894AC80554}"
+      DTS:ObjectName="ParentPackageID">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">00000000-0000-0000-0000-000000000000</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D8965BED-B9FD-4BDF-A9E4-9EEA5E909EC3}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;[&quot;+@[User::SchemaName]+&quot;].[&quot;+@[User::TableName]+&quot;]&quot;&#xA;        "
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="QualifiedTableSchema">
+      <DTS:VariableValue
+        DTS:DataType="8">[Dim].[Customer]</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D0D98D1A-7F86-497C-8717-356CACA5437E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="QueryAuditStart">
+      <DTS:VariableValue
+        DTS:DataType="8">
+          EXECUTE [Audit].[PackageControlStart] @PackageName=?, @PackageId=?, 
+          @ParentPackageId=?,@ExecutionId=?, @StartTime=?;
+        </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{23BFCB43-9437-4260-B46D-95BD9EB6F38C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="QueryAuditUpdate">
+      <DTS:VariableValue
+        DTS:DataType="8">
+          EXECUTE [Audit].[PackageControlStop] @PackageId=?, @ExecutionId=?, 
+          @InsertRowQuantity=?, @UpdateRowQuantity=?, @UnchangedRowQuantity=?;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A2D75C19-5877-4D96-9AE3-A830FC9519E8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountChanged">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{588AF2E1-76C1-414C-A1B9-4F63E604D914}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountNew">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8F9BABDF-B423-4B13-9811-5E3FFEDDA028}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountSource">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7B6AEFAF-D17A-4234-8450-27D7CBFD0314}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountUnchanged">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BC8BD246-02AC-48FF-B564-E9792FEBA2B1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8">Dim</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{030139CD-B95A-43F7-8F16-BA95468B8924}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8">Customer</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT InsertCustomer"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DTSID="{413A5AE6-2328-48C9-B381-4E584AB14C35}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT InsertCustomer"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT InsertCustomer\CNT Changed_Rows"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              name="CNT Changed_Rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCountChanged</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCustomer\CNT Changed_Rows.Inputs[CSPL Check For Changes_ChangedRows_CNT Changed_Rows]"
+                  hasSideEffects="true"
+                  name="CSPL Check For Changes_ChangedRows_CNT Changed_Rows">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCustomer\CNT Changed_Rows.Outputs[Output]"
+                  name="Output"
+                  synchronousInputId="Package\DFT InsertCustomer\CNT Changed_Rows.Inputs[CSPL Check For Changes_ChangedRows_CNT Changed_Rows]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCustomer\CNT New_Rows"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              name="CNT New_Rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCountNew</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCustomer\CNT New_Rows.Inputs[LKP Historical Key_NoMatch_CNT New_Rows]"
+                  hasSideEffects="true"
+                  name="LKP Historical Key_NoMatch_CNT New_Rows">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCustomer\CNT New_Rows.Outputs[Output]"
+                  name="Output"
+                  synchronousInputId="Package\DFT InsertCustomer\CNT New_Rows.Inputs[LKP Historical Key_NoMatch_CNT New_Rows]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCustomer\CNT Source_Rows"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              name="CNT Source_Rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCountSource</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCustomer\CNT Source_Rows.Inputs[OLE_SRC StgDimCustomer_Output_CNT Source_Rows]"
+                  hasSideEffects="true"
+                  name="OLE_SRC StgDimCustomer_Output_CNT Source_Rows">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCustomer\CNT Source_Rows.Outputs[Output]"
+                  name="Output"
+                  synchronousInputId="Package\DFT InsertCustomer\CNT Source_Rows.Inputs[OLE_SRC StgDimCustomer_Output_CNT Source_Rows]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCustomer\CNT Unchanged_Rows"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              name="CNT Unchanged_Rows">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCountUnchanged</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCustomer\CNT Unchanged_Rows.Inputs[CSPL Check For Changes_Default_CNT Unchanged_Rows]"
+                  hasSideEffects="true"
+                  name="CSPL Check For Changes_Default_CNT Unchanged_Rows">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCustomer\CNT Unchanged_Rows.Outputs[Output]"
+                  name="Output"
+                  synchronousInputId="Package\DFT InsertCustomer\CNT Unchanged_Rows.Inputs[CSPL Check For Changes_Default_CNT Unchanged_Rows]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCustomer\CSPL Check For Changes"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              name="CSPL Check For Changes"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCustomer\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes]"
+                  name="LKP Historical Key_Match_CSPL Check For Changes">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes].Columns[ChangeHashKeyASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="34"
+                      cachedName="ChangeHashKeyASCII"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[ChangeHashKeyASCII]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes].Columns[lkp_ChangeHashKeyASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="34"
+                      cachedName="lkp_ChangeHashKeyASCII"
+                      lineageId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[Match].Columns[lkp_ChangeHashKeyASCII]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCustomer\CSPL Check For Changes.Outputs[ChangedRows]"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="ChangedRows"
+                  synchronousInputId="Package\DFT InsertCustomer\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      name="Expression">#{Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[ChangeHashKeyASCII]} != #{Package\DFT InsertCustomer\LKP Historical Key.Outputs[Match].Columns[lkp_ChangeHashKeyASCII]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="FriendlyExpression">ChangeHashKeyASCII != lkp_ChangeHashKeyASCII</property>
+                    <property
+                      dataType="System.Int32"
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT InsertCustomer\CSPL Check For Changes.Outputs[Default]"
+                  exclusionGroup="1"
+                  name="Default"
+                  synchronousInputId="Package\DFT InsertCustomer\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT InsertCustomer\CSPL Check For Changes.Outputs[Error]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error"
+                  synchronousInputId="Package\DFT InsertCustomer\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\CSPL Check For Changes.Outputs[Error].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\CSPL Check For Changes.Outputs[Error].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\CSPL Check For Changes.Outputs[Error].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\CSPL Check For Changes.Outputs[Error].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCustomer\LKP Historical Key"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              name="LKP Historical Key"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+                      CONVERT(VARCHAR(34), ChangeHashKey, 1) AS ChangeHashKeyASCII
+                      , CONVERT(VARCHAR(34), HistoricalHashKey, 1) AS HistoricalHashKeyASCII
+                      FROM
+                      Dim.Customer</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+                     CONVERT(VARCHAR(34), ChangeHashKey, 1) AS ChangeHashKeyASCII
+                     , CONVERT(VARCHAR(34), HistoricalHashKey, 1) AS HistoricalHashKeyASCII
+                     FROM
+                     Dim.Customer) [refTable]
+                     where [refTable].[HistoricalHashKeyASCII] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;
+  &lt;referenceColumns&gt;
+    &lt;referenceColumn name="ChangeHashKeyASCII" dataType="DT_STR" length="34" precision="0" scale="0" codePage="1252" /&gt;
+    &lt;referenceColumn name="HistoricalHashKeyASCII" dataType="DT_STR" length="34" precision="0" scale="0" codePage="1252" /&gt;
+  &lt;/referenceColumns&gt;
+&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[HistoricalHashKeyASCII]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT InsertCustomer\LKP Historical Key.Connections[OleDbConnection]"
+                  connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WWIDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCustomer\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]"
+                  name="CNT Source_Rows_Output_LKP Historical Key">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key].Columns[HistoricalHashKeyASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="34"
+                      cachedName="HistoricalHashKeyASCII"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[HistoricalHashKeyASCII]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">HistoricalHashKeyASCII</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[Match]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Match"
+                  synchronousInputId="Package\DFT InsertCustomer\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[Match].Columns[lkp_ChangeHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="CopyColumn"
+                      length="34"
+                      lineageId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[Match].Columns[lkp_ChangeHashKeyASCII]"
+                      name="lkp_ChangeHashKeyASCII"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ChangeHashKeyASCII</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[NoMatch]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="NoMatch"
+                  synchronousInputId="Package\DFT InsertCustomer\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[Error]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error"
+                  synchronousInputId="Package\DFT InsertCustomer\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[Error].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[Error].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[Error].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[Error].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCustomer\OLE_DST New_Rows"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              name="OLE_DST New_Rows"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Dim.Customer</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Connections[OleDbConnection]"
+                  connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WWIDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="CNT New_Rows_Output_OLE_DST New_Rows">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CustomerID]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[CustomerName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CustomerName"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CustomerName]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[CustomerName]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[DeliveryCityKey]"
+                      cachedDataType="i4"
+                      cachedName="DeliveryCityKey"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[DeliveryCityKey]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[DeliveryCityKey]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[HistoricalHashKey]"
+                      cachedDataType="bytes"
+                      cachedLength="20"
+                      cachedName="HistoricalHashKey"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[HistoricalHashKey]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[HistoricalHashKey]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[ChangeHashKey]"
+                      cachedDataType="bytes"
+                      cachedLength="20"
+                      cachedName="ChangeHashKey"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[ChangeHashKey]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[ChangeHashKey]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[HistoricalHashKeyASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="34"
+                      cachedName="HistoricalHashKeyASCII"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[HistoricalHashKeyASCII]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[HistoricalHashKeyASCII]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[ChangeHashKeyASCII]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="34"
+                      cachedName="ChangeHashKeyASCII"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[ChangeHashKeyASCII]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[ChangeHashKeyASCII]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[InsertDttm]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InsertDttm"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[InsertDttm]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[InsertDttm]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].Columns[UpdateDttm]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UpdateDttm"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[UpdateDttm]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[UpdateDttm]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CustomerKey]"
+                      dataType="i4"
+                      name="CustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[CustomerName]"
+                      dataType="wstr"
+                      length="100"
+                      name="CustomerName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[DeliveryCityKey]"
+                      dataType="i4"
+                      name="DeliveryCityKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[HistoricalHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="HistoricalHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[ChangeHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="ChangeHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[HistoricalHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      name="HistoricalHashKeyASCII" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[ChangeHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      name="ChangeHashKeyASCII" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[InsertDttm]"
+                      dataType="dbTimeStamp"
+                      name="InsertDttm" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows].ExternalColumns[UpdateDttm]"
+                      dataType="dbTimeStamp"
+                      name="UpdateDttm" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Outputs[Error]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error"
+                  synchronousInputId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Outputs[Error].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\OLE_DST New_Rows.Outputs[Error].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST New_Rows.Outputs[Error].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\OLE_DST New_Rows.Outputs[Error].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCustomer\OLE_DST Update Table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              name="OLE_DST Update Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Updt].[UpdtCustomer]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT InsertCustomer\OLE_DST Update Table.Connections[OleDbConnection]"
+                  connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WWIDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="CNT Changed_Rows_Output_OLE_DST Update Table">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[CustomerID]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[CustomerName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CustomerName"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[CustomerName]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[CustomerName]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[DeliveryCityKey]"
+                      cachedDataType="i4"
+                      cachedName="DeliveryCityKey"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[DeliveryCityKey]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[DeliveryCityKey]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[HistoricalHashKey]"
+                      cachedDataType="bytes"
+                      cachedLength="20"
+                      cachedName="HistoricalHashKey"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[HistoricalHashKey]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[HistoricalHashKey]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[ChangeHashKey]"
+                      cachedDataType="bytes"
+                      cachedLength="20"
+                      cachedName="ChangeHashKey"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[ChangeHashKey]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[ChangeHashKey]" />
+                    <inputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].Columns[InsertDttm]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InsertDttm"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[InsertDttm]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[InsertDttm]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[HistoricalHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="HistoricalHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[ChangeHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="ChangeHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[CustomerName]"
+                      dataType="wstr"
+                      length="100"
+                      name="CustomerName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[DeliveryCityKey]"
+                      dataType="i4"
+                      name="DeliveryCityKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table].ExternalColumns[InsertDttm]"
+                      dataType="dbTimeStamp"
+                      name="InsertDttm" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCustomer\OLE_DST Update Table.Outputs[Error]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error"
+                  synchronousInputId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Outputs[Error].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\OLE_DST Update Table.Outputs[Error].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_DST Update Table.Outputs[Error].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\OLE_DST Update Table.Outputs[Error].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              name="OLE_SRC StgDimCustomer"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM Dim.CustomerView</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Connections[OleDbConnection]"
+                  connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WWIDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output]"
+                  name="Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[CustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[CustomerName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[CustomerName]"
+                      length="100"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[CustomerName]"
+                      name="CustomerName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[DeliveryCityKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[DeliveryCityKey]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[DeliveryCityKey]"
+                      name="DeliveryCityKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[HistoricalHashKey]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[HistoricalHashKey]"
+                      length="20"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[HistoricalHashKey]"
+                      name="HistoricalHashKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[ChangeHashKey]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[ChangeHashKey]"
+                      length="20"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[ChangeHashKey]"
+                      name="ChangeHashKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[HistoricalHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[HistoricalHashKeyASCII]"
+                      length="34"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[HistoricalHashKeyASCII]"
+                      name="HistoricalHashKeyASCII"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[ChangeHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[ChangeHashKeyASCII]"
+                      length="34"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[ChangeHashKeyASCII]"
+                      name="ChangeHashKeyASCII"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[InsertDttm]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[InsertDttm]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[InsertDttm]"
+                      name="InsertDttm"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[UpdateDttm]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[UpdateDttm]"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].Columns[UpdateDttm]"
+                      name="UpdateDttm"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[CustomerName]"
+                      dataType="wstr"
+                      length="100"
+                      name="CustomerName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[DeliveryCityKey]"
+                      dataType="i4"
+                      name="DeliveryCityKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[HistoricalHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="HistoricalHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[ChangeHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      name="ChangeHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[HistoricalHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      name="HistoricalHashKeyASCII" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[ChangeHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      name="ChangeHashKeyASCII" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[InsertDttm]"
+                      dataType="dbTimeStamp"
+                      name="InsertDttm" />
+                    <externalMetadataColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output].ExternalColumns[UpdateDttm]"
+                      dataType="dbTimeStamp"
+                      name="UpdateDttm" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error]"
+                  isErrorOut="true"
+                  name="Error">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[CustomerID]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[CustomerName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[CustomerName]"
+                      name="CustomerName" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[DeliveryCityKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[DeliveryCityKey]"
+                      name="DeliveryCityKey" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[HistoricalHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[HistoricalHashKey]"
+                      name="HistoricalHashKey" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[ChangeHashKey]"
+                      dataType="bytes"
+                      length="20"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[ChangeHashKey]"
+                      name="ChangeHashKey" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[HistoricalHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[HistoricalHashKeyASCII]"
+                      name="HistoricalHashKeyASCII" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[ChangeHashKeyASCII]"
+                      codePage="1252"
+                      dataType="str"
+                      length="34"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[ChangeHashKeyASCII]"
+                      name="ChangeHashKeyASCII" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[InsertDttm]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[InsertDttm]"
+                      name="InsertDttm" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[UpdateDttm]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[UpdateDttm]"
+                      name="UpdateDttm" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Error].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT InsertCustomer.Paths[CNT Changed_Rows_Output_OLE_DST Update Table]"
+              endId="Package\DFT InsertCustomer\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table]"
+              name="CNT Changed_Rows_Output_OLE_DST Update Table"
+              startId="Package\DFT InsertCustomer\CNT Changed_Rows.Outputs[Output]" />
+            <path
+              refId="Package\DFT InsertCustomer.Paths[CNT New_Rows_Output_OLE_DST New_Rows]"
+              endId="Package\DFT InsertCustomer\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows]"
+              name="CNT New_Rows_Output_OLE_DST New_Rows"
+              startId="Package\DFT InsertCustomer\CNT New_Rows.Outputs[Output]" />
+            <path
+              refId="Package\DFT InsertCustomer.Paths[CNT Source_Rows_Output_LKP Historical Key]"
+              endId="Package\DFT InsertCustomer\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]"
+              name="CNT Source_Rows_Output_LKP Historical Key"
+              startId="Package\DFT InsertCustomer\CNT Source_Rows.Outputs[Output]" />
+            <path
+              refId="Package\DFT InsertCustomer.Paths[CSPL Check For Changes_ChangedRows_CNT Changed_Rows]"
+              endId="Package\DFT InsertCustomer\CNT Changed_Rows.Inputs[CSPL Check For Changes_ChangedRows_CNT Changed_Rows]"
+              name="CSPL Check For Changes_ChangedRows_CNT Changed_Rows"
+              startId="Package\DFT InsertCustomer\CSPL Check For Changes.Outputs[ChangedRows]" />
+            <path
+              refId="Package\DFT InsertCustomer.Paths[CSPL Check For Changes_Default_CNT Unchanged_Rows]"
+              endId="Package\DFT InsertCustomer\CNT Unchanged_Rows.Inputs[CSPL Check For Changes_Default_CNT Unchanged_Rows]"
+              name="CSPL Check For Changes_Default_CNT Unchanged_Rows"
+              startId="Package\DFT InsertCustomer\CSPL Check For Changes.Outputs[Default]" />
+            <path
+              refId="Package\DFT InsertCustomer.Paths[LKP Historical Key_Match_CSPL Check For Changes]"
+              endId="Package\DFT InsertCustomer\CSPL Check For Changes.Inputs[LKP Historical Key_Match_CSPL Check For Changes]"
+              name="LKP Historical Key_Match_CSPL Check For Changes"
+              startId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[Match]" />
+            <path
+              refId="Package\DFT InsertCustomer.Paths[LKP Historical Key_NoMatch_CNT New_Rows]"
+              endId="Package\DFT InsertCustomer\CNT New_Rows.Inputs[LKP Historical Key_NoMatch_CNT New_Rows]"
+              name="LKP Historical Key_NoMatch_CNT New_Rows"
+              startId="Package\DFT InsertCustomer\LKP Historical Key.Outputs[NoMatch]" />
+            <path
+              refId="Package\DFT InsertCustomer.Paths[OLE_SRC StgDimCustomer_Output_CNT Source_Rows]"
+              endId="Package\DFT InsertCustomer\CNT Source_Rows.Inputs[OLE_SRC StgDimCustomer_Output_CNT Source_Rows]"
+              name="OLE_SRC StgDimCustomer_Output_CNT Source_Rows"
+              startId="Package\DFT InsertCustomer\OLE_SRC StgDimCustomer.Outputs[Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Begin Audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{6DBE82F3-A704-4774-A3D9-30AB19D92B85}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Begin Audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7D84A933-923C-4EF8-AB25-8ADE4D8B81C6}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::QueryAuditStart" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="72"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="$Package::ParentPackageID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="72"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="System::StartTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Close Audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{F4D72E3F-D057-4D13-A32B-C4A56914178C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Close Audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7D84A933-923C-4EF8-AB25-8ADE4D8B81C6}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::QueryAuditUpdate" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="72"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowCountNew"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::RowCountChanged"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="User::RowCountUnchanged"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Truncate UpdtCustomer"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{15A80041-AEAF-4D44-A744-F92DD49ABB4A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Truncate UpdtCustomer"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3B39533B-D2F0-4791-977B-EBEBD5593A01}"
+          SQLTask:SqlStatementSource="Truncate Table [Updt].[UpdtCustomer]&#xA;            " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Update Customer"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{EA70686E-2A66-4F66-8893-E61511DD245F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Update Customer"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3B39533B-D2F0-4791-977B-EBEBD5593A01}"
+          SQLTask:SqlStatementSource="UPDATE d &#xA;     SET &#xA;     d.CustomerName = u.CustomerName,&#xA;     d.DeliveryCityKey = u.DeliveryCityKey,&#xA;     d.changehashkey = u.changehashkey &#xA;     FROM Updt.UpdtCustomer u &#xA;     INNER JOIN Dim.Customer d ON u.HistoricalHashKey = d.HistoricalHashKey;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_DFT InsertCustomer_To_SQL Update Customer]"
+      DTS:CreationName=""
+      DTS:DTSID="{1B0411CE-DDB2-4695-9887-45CF9ABE2CC9}"
+      DTS:From="Package\DFT InsertCustomer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_DFT InsertCustomer_To_SQL Update Customer"
+      DTS:To="Package\SQL Update Customer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Begin Audit_To_SQL Truncate UpdtCustomer]"
+      DTS:CreationName=""
+      DTS:DTSID="{C3EC1434-A2D3-49E8-8977-C59F92B6E642}"
+      DTS:From="Package\SQL Begin Audit"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_SQL Begin Audit_To_SQL Truncate UpdtCustomer"
+      DTS:To="Package\SQL Truncate UpdtCustomer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Truncate UpdtCustomer_To_DFT InsertCustomer]"
+      DTS:CreationName=""
+      DTS:DTSID="{9B655D1D-334A-4660-9F82-6FBC16852AEA}"
+      DTS:From="Package\SQL Truncate UpdtCustomer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_SQL Truncate UpdtCustomer_To_DFT InsertCustomer"
+      DTS:To="Package\DFT InsertCustomer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Update Customer_To_SQL Close Audit]"
+      DTS:CreationName=""
+      DTS:DTSID="{D433D417-5037-451D-B826-1F2334934922}"
+      DTS:From="Package\SQL Update Customer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_SQL Update Customer_To_SQL Close Audit"
+      DTS:To="Package\SQL Close Audit" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

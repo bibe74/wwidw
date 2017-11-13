@@ -6,25 +6,6 @@ SET NOEXEC OFF;
  * file: 11-wwidw-setup-Setup.sql
 */
 
-USE master;
-GO
-
-/* If the database exists, drop it */
-IF DB_ID('WWIDW') IS NOT NULL
-BEGIN
-    ALTER DATABASE WWIDW SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-
-    DROP DATABASE WWIDW;
-END
-GO
-
-/* If the database doesn't exist (it shouldn't!), create it */
-IF DB_ID('WWIDW') IS NULL
-BEGIN
-    CREATE DATABASE WWIDW COLLATE Latin1_General_100_CI_AS; -- Use the same collation as WideWorldImporters
-END
-GO
-
 USE WWIDW;
 GO
 
@@ -32,6 +13,11 @@ IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = N'S
 BEGIN
 	EXEC ('CREATE SCHEMA Setup AUTHORIZATION dbo;'); -- Setup: setup tables
 END;
+GO
+
+DROP TABLE IF EXISTS Setup.SourceColumns;
+DROP TABLE IF EXISTS Setup.SourceTables;
+DROP TABLE IF EXISTS Setup.SourceDatabases;
 GO
 
 IF OBJECT_ID(N'Setup.SourceDatabases', N'U') IS NOT NULL
@@ -47,6 +33,7 @@ CREATE TABLE Setup.SourceDatabases (
 	SourceConnectionName NVARCHAR(40) NOT NULL,
 	SourceConnectionString NVARCHAR(255) NOT NULL,
 	DestinationDatabase sysname NOT NULL,
+	DestinationConnectionName NVARCHAR(40) NOT NULL,
 	DestinationConnectionString NVARCHAR(255) NOT NULL,
 	DestinationLandingSchema sysname NOT NULL
 );
@@ -59,17 +46,19 @@ INSERT INTO Setup.SourceDatabases
 	SourceConnectionName,
 	SourceConnectionString,
 	DestinationDatabase,
+	DestinationConnectionName,
 	DestinationConnectionString,
     DestinationLandingSchema
 )
 SELECT
-	N'(local)\SQL2016',
+	N'(local)\SQL2017',
 	N'WideWorldImporters',
 	N'WideWorldImporters',
-	N'Data Source=(local)\SQL2016;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;',
+	N'Data Source=(local)\SQL2017;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;',
 	N'WWIDW',
-	N'Data Source=(local)\SQL2016;Initial Catalog=WWIDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;',
-	N'Landing_WWI';
+	N'WWIDW',
+	N'Data Source=(local)\SQL2017;Initial Catalog=WWIDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;',
+	N'Staging';
 GO
 
 IF OBJECT_ID(N'Setup.SourceTables', N'U') IS NOT NULL
@@ -172,6 +161,33 @@ WHERE SourceDatabaseID = 1
 	 );
 GO
 
+UPDATE Setup.SourceTables
+SET PublishToDataWarehouse = 1,
+	DataWarehouseSchema = N'Fact',
+	DataWarehouseTable = N'SalesOrders'
+WHERE SourceDatabaseID = 1
+	AND SourceSchema = N'Sales'
+	AND SourceTable = N'OrderLines';
+GO
+
+UPDATE Setup.SourceTables
+SET PublishToDataWarehouse = 1,
+	DataWarehouseSchema = N'Dim',
+	DataWarehouseTable = N'Customer'
+WHERE SourceDatabaseID = 1
+	AND SourceSchema = N'Sales'
+	AND SourceTable = N'Customers';
+GO
+
+UPDATE Setup.SourceTables
+SET PublishToDataWarehouse = 1,
+	DataWarehouseSchema = N'Dim',
+	DataWarehouseTable = N'City'
+WHERE SourceDatabaseID = 1
+	AND SourceSchema = N'Application'
+	AND SourceTable = N'Cities';
+GO
+
 UPDATE SC
 SET SC.IsPrimaryKey = 1
 
@@ -197,3 +213,9 @@ WHERE
 	OR (SC.SourceSchema = N'Application' AND SC.SourceTable = N'Countries' AND SC.SourceColumn IN (N'CountryID', N'CountryName', N'Region', N'Subregion'))
 ;
 GO
+
+SELECT
+	*
+FROM Setup.SourceTables ST
+
+WHERE ST.UseForDataWarehouse = 1

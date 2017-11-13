@@ -9,6 +9,28 @@ SET NOEXEC OFF;
 USE WideWorldImporters;
 GO
 
+/* Cleanup
+
+DELETE OL
+FROM Sales.OrderLines OL
+INNER JOIN Sales.Orders O ON O.OrderID = OL.OrderID
+INNER JOIN Sales.Customers C ON C.CustomerID = O.CustomerID
+WHERE C.CustomerName = N'SQL Saturday Pordenone';
+
+DELETE O
+FROM Sales.Orders O
+INNER JOIN Sales.Customers C ON C.CustomerID = O.CustomerID
+WHERE C.CustomerName = N'SQL Saturday Pordenone';
+
+DELETE FROM Sales.Customers WHERE CustomerName = N'SQL Saturday Pordenone';
+
+DELETE FROM Application.Cities WHERE CityName = N'Pordenone';
+
+DELETE FROM Application.StateProvinces WHERE StateProvinceName = N'Friuli Venezia-Giulia';
+GO
+
+*/
+
 /* Insert a new Customer */
 
 /* Retrieve Italy's CountryID */
@@ -116,7 +138,7 @@ SELECT TOP 1
     PrimaryContactPersonID,
     AlternateContactPersonID,
     DeliveryMethodID,
-    DeliveryCityID,
+    38188 AS DeliveryCityID,
     PostalCityID,
     CreditLimit,
     AccountOpenedDate,

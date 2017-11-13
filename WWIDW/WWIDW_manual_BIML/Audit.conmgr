@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="Audit" DTS:DTSID="{3A3DCF92-D4BC-48B0-99C2-73A2CB3377EE}" DTS:refId="Package.ConnectionManagers[Audit]" DTS:CreationName="OLEDB">
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="Audit" DTS:DTSID="{7D84A933-923C-4EF8-AB25-8ADE4D8B81C6}" DTS:refId="Package.ConnectionManagers[Audit]" DTS:CreationName="OLEDB">
   <DTS:ObjectData>
     <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="data source=localhost\SQL2017;initial catalog=WWIDW_manual;integrated security=SSPI;provider=SQLNCLI11.1"></DTS:ConnectionManager>
   </DTS:ObjectData>

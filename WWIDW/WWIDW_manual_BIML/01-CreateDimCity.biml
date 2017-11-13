@@ -4,16 +4,16 @@
 
 	<!--
 	<#
-	string PackageName  = "LoadDimCity";
+	string PackageName  = "01-LoadDimCity";
 	string DstSchemaName = "Dim";
 	string DstTableName = "City";
-	string DstConnection = "AWBIML";
+	string DstConnection = "WWIDW";
 	string DataFlowSourceName = "OLE_SRC StgDimCity";
-	string SrcConnection = "AWBIML";
+	string SrcConnection = "WWIDW";
 	string SourceQuery = @"SELECT * FROM Dim.CityView";
 	string UpdateSchemaName = "Updt";
 	string UpdateTableName = "UpdtCity";
-	string UpdateConnection = "AWBIML";
+	string UpdateConnection = "WWIDW";
 	string UpdateSQLStatement = @"UPDATE d 
 					SET 
 					d.CityName = u.CityName,

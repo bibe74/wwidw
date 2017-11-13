@@ -2,23 +2,23 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>WWIDW_manual_BIML</Name>
-    <LastWriteTime>2017-11-12T18:56:58.1528658Z</LastWriteTime>
+    <LastWriteTime>2017-11-12T21:28:56.6341569Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
-      <Name>LoadDimCity.dtsx</Name>
-      <LastWriteTime>2017-11-12T11:36:12.2516531Z</LastWriteTime>
+      <Name>01-LoadDimCity.dtsx</Name>
+      <LastWriteTime>2017-11-12T21:27:48.9243801Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>LoadDimCustomer.dtsx</Name>
-      <LastWriteTime>2017-11-12T11:39:57.7094938Z</LastWriteTime>
+      <Name>02-LoadDimCustomer.dtsx</Name>
+      <LastWriteTime>2017-11-12T21:28:09.7742132Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>LoadFactSalesOrders.dtsx</Name>
-      <LastWriteTime>2017-11-12T18:56:33.8008102Z</LastWriteTime>
+      <Name>11-LoadFactSalesOrders.dtsx</Name>
+      <LastWriteTime>2017-11-12T21:28:23.2577246Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

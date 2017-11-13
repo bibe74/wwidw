@@ -1,47 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DTS:Executable DTS:CreationDate="11/12/2017 19:56:31" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="HARDY" DTS:CreatorName="bs_turelli" DTS:DTSID="{C3D9BAD2-80D3-4C5B-9063-D1015F6D722A}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1033" DTS:ObjectName="LoadFactSalesOrders" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{6DF3B460-2487-4BDA-92FA-A7E05E35CBE0}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+<DTS:Executable DTS:CreationDate="11/12/2017 22:28:18" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="HARDY" DTS:CreatorName="bs_turelli" DTS:DTSID="{024153F8-3617-4E4F-A9CB-3544FAC79587}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1033" DTS:ObjectName="11-LoadFactSalesOrders" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{0A66AE9D-836E-4BB7-84FD-1EB6390613DF}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
   <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
-    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{37CD79E0-815D-49EE-8ABF-AA5EBD96C883}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{C860999C-EE5F-4B1F-98FE-18C1AD890C59}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
       <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">00000000-0000-0000-0000-000000000000</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{DC81B132-98FB-48CF-8F72-99742CF37950}" DTS:EvaluateAsExpression="True" DTS:Expression="&quot;[&quot;+@[User::SchemaName]+&quot;].[&quot;+@[User::TableName]+&quot;]&quot;&#xA;        " DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QualifiedTableSchema">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{F7997D67-A1A9-4C8A-8C8F-13ED1537DF68}" DTS:EvaluateAsExpression="True" DTS:Expression="&quot;[&quot;+@[User::SchemaName]+&quot;].[&quot;+@[User::TableName]+&quot;]&quot;&#xA;        " DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QualifiedTableSchema">
       <DTS:VariableValue DTS:DataType="8">[Fact].[SalesOrders]</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{84DBECEB-878A-4C58-9FA7-63A65824F89E}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QueryAuditStart">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{F3CA0247-A0CB-4032-BA28-391FC08A679A}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QueryAuditStart">
       <DTS:VariableValue DTS:DataType="8">
           EXECUTE [Audit].[PackageControlStart] @PackageName=?, @PackageId=?, 
           @ParentPackageId=?,@ExecutionId=?, @StartTime=?;
         </DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{4791EFA7-7820-4EAD-93D7-95FB14965744}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QueryAuditUpdate">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{F18DE992-A466-4E36-907B-3FBA686AE568}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QueryAuditUpdate">
       <DTS:VariableValue DTS:DataType="8">
           EXECUTE [Audit].[PackageControlStop] @PackageId=?, @ExecutionId=?, 
           @InsertRowQuantity=?, @UpdateRowQuantity=?, @UnchangedRowQuantity=?;</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{23E2FAAF-E07B-4CA4-8DB5-2016A6A28F91}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountChanged">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{6268D22E-8800-4122-A231-ACD336F3EAEB}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountChanged">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{1562B58F-8E58-41CD-8A9D-AC0E5EA3C308}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountNew">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{9657B452-C118-4ABC-B3CC-988C1543EEBC}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountNew">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{EAE8FA08-93A1-4BFD-9A5A-A8A9795C9EA6}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountSource">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{06957206-571D-4996-8FB2-FD950AA7E7DC}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountSource">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{DA756BB3-377E-4A4C-B0F9-B552D1A26D70}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountUnchanged">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{87DFAA85-F280-4702-A8BF-F799F98203F2}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountUnchanged">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{6EC60A1E-E258-47B6-B9EC-D72BC654EFE4}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="SchemaName">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{FD85BB1E-5A62-4A0C-B99F-8CF10368EF1D}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="SchemaName">
       <DTS:VariableValue DTS:DataType="8">Fact</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{9BF0F8B9-9761-43A4-ABC8-4BF7B24A50C4}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="TableName">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{4B800BF2-170A-4633-9267-7F2F360E6B5D}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="TableName">
       <DTS:VariableValue DTS:DataType="8">SalesOrders</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{03AA0AF5-3351-490B-B5EB-57DA62A7D6C7}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Begin Audit" DTS:refId="Package\SQL Begin Audit" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{B058FB71-17E7-4BCD-BBC6-A5920FCEF686}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Begin Audit" DTS:refId="Package\SQL Begin Audit" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
         <SQLTask:SqlTaskData SQLTask:Connection="Audit" SQLTask:SqlStatementSource="User::QueryAuditStart" SQLTask:SqlStmtSourceType="Variable" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
@@ -52,13 +52,13 @@
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{B5E6C58B-8A34-4DC2-9475-552F50867A00}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="DFT InsertSalesOrders" DTS:refId="Package\DFT InsertSalesOrders" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{FD755346-1A62-4D99-887A-39C00DA49F97}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="DFT InsertSalesOrders" DTS:refId="Package\DFT InsertSalesOrders" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
         <pipeline BLOBTempStoragePath="" bufferTempStoragePath="" name="pipelineXml" version="1">
           <components>
             <component componentClassID="Microsoft.OLEDBSource" contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7" name="OLE_SRC StgFactSalesOrders" refId="Package\DFT InsertSalesOrders\OLE_SRC StgFactSalesOrders" usesDispositions="true" version="7">
               <connections>
-                <connection connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external" connectionManagerRefId="Project.ConnectionManagers[AWBIML]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT InsertSalesOrders\OLE_SRC StgFactSalesOrders.Connections[OleDbConnection]"></connection>
+                <connection connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external" connectionManagerRefId="Project.ConnectionManagers[WWIDW]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT InsertSalesOrders\OLE_SRC StgFactSalesOrders.Connections[OleDbConnection]"></connection>
               </connections>
               <outputs>
                 <output name="Output" refId="Package\DFT InsertSalesOrders\OLE_SRC StgFactSalesOrders.Outputs[Output]">
@@ -137,7 +137,7 @@
             </component>
             <component componentClassID="Microsoft.Lookup" contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6" name="LKP Historical Key" refId="Package\DFT InsertSalesOrders\LKP Historical Key" usesDispositions="true" version="6">
               <connections>
-                <connection connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external" connectionManagerRefId="Project.ConnectionManagers[AWBIML]" description="Connection manager used to access lookup data." name="OleDbConnection" refId="Package\DFT InsertSalesOrders\LKP Historical Key.Connections[OleDbConnection]"></connection>
+                <connection connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external" connectionManagerRefId="Project.ConnectionManagers[WWIDW]" description="Connection manager used to access lookup data." name="OleDbConnection" refId="Package\DFT InsertSalesOrders\LKP Historical Key.Connections[OleDbConnection]"></connection>
               </connections>
               <inputs>
                 <input name="CNT Source_Rows_Output_LKP Historical Key" refId="Package\DFT InsertSalesOrders\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]">
@@ -220,7 +220,7 @@
             </component>
             <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="OLE_DST New_Rows" refId="Package\DFT InsertSalesOrders\OLE_DST New_Rows" usesDispositions="true" version="4">
               <connections>
-                <connection connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external" connectionManagerRefId="Project.ConnectionManagers[AWBIML]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT InsertSalesOrders\OLE_DST New_Rows.Connections[OleDbConnection]"></connection>
+                <connection connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external" connectionManagerRefId="Project.ConnectionManagers[WWIDW]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT InsertSalesOrders\OLE_DST New_Rows.Connections[OleDbConnection]"></connection>
               </connections>
               <inputs>
                 <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="CNT New_Rows_Output_OLE_DST New_Rows" refId="Package\DFT InsertSalesOrders\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows]">
@@ -353,7 +353,7 @@
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{E180AAFB-A88C-46C0-B766-22211652CDC8}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Close Audit" DTS:refId="Package\SQL Close Audit" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{D66A30BB-6FBB-4E9A-977B-3FFB4A9DEDAE}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Close Audit" DTS:refId="Package\SQL Close Audit" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
         <SQLTask:SqlTaskData SQLTask:Connection="Audit" SQLTask:SqlStatementSource="User::QueryAuditUpdate" SQLTask:SqlStmtSourceType="Variable" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding SQLTask:DataType="72" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
@@ -366,7 +366,7 @@
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{587CF250-CBAF-43E5-8118-BF4971969BED}" DTS:From="Package\SQL Begin Audit" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Begin Audit_To_DFT InsertSalesOrders" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Begin Audit_To_DFT InsertSalesOrders]" DTS:To="Package\DFT InsertSalesOrders"></DTS:PrecedenceConstraint>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{630F3357-33E8-46E5-BEAB-F3083DDD21BF}" DTS:From="Package\DFT InsertSalesOrders" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_DFT InsertSalesOrders_To_SQL Close Audit" DTS:refId="Package.PrecedenceConstraints[Constraint_DFT InsertSalesOrders_To_SQL Close Audit]" DTS:To="Package\SQL Close Audit"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{E9C49783-ABE7-4CB1-8563-16B9819E795D}" DTS:From="Package\SQL Begin Audit" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Begin Audit_To_DFT InsertSalesOrders" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Begin Audit_To_DFT InsertSalesOrders]" DTS:To="Package\DFT InsertSalesOrders"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{0EE7A76F-C405-46FB-B81A-4E461C2206F2}" DTS:From="Package\DFT InsertSalesOrders" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_DFT InsertSalesOrders_To_SQL Close Audit" DTS:refId="Package.PrecedenceConstraints[Constraint_DFT InsertSalesOrders_To_SQL Close Audit]" DTS:To="Package\SQL Close Audit"></DTS:PrecedenceConstraint>
   </DTS:PrecedenceConstraints>
 </DTS:Executable>

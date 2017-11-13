@@ -1,47 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DTS:Executable DTS:CreationDate="11/12/2017 12:36:10" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="HARDY" DTS:CreatorName="bs_turelli" DTS:DTSID="{6A8D9289-F1B7-449B-9010-86E08BB1C0B2}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1033" DTS:ObjectName="LoadDimCity" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{2E61D65F-7F27-4FE2-995B-39A294222144}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+<DTS:Executable DTS:CreationDate="11/12/2017 22:27:48" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="HARDY" DTS:CreatorName="bs_turelli" DTS:DTSID="{9D5DE804-1960-40FB-8AAC-13D89C631E16}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1033" DTS:ObjectName="01-LoadDimCity" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{F666961C-417C-4495-A9B5-4FBF13314E65}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
   <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
-    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{F36728CC-652B-4921-A94E-F663CAB1A999}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{FC074605-02D8-404D-9D4D-6E9131A03B57}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
       <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">00000000-0000-0000-0000-000000000000</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{9042C808-44BF-4F0B-B199-AD9A0DA7A919}" DTS:EvaluateAsExpression="True" DTS:Expression="&quot;[&quot;+@[User::SchemaName]+&quot;].[&quot;+@[User::TableName]+&quot;]&quot;&#xA;        " DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QualifiedTableSchema">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{815D749D-FBBE-40F0-B46C-53E1429299AD}" DTS:EvaluateAsExpression="True" DTS:Expression="&quot;[&quot;+@[User::SchemaName]+&quot;].[&quot;+@[User::TableName]+&quot;]&quot;&#xA;        " DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QualifiedTableSchema">
       <DTS:VariableValue DTS:DataType="8">[Dim].[City]</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{4EBB8171-2EB8-44E8-8485-8A1189D384F7}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QueryAuditStart">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{E311EF9E-880E-44E7-8CFE-384F2CA71900}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QueryAuditStart">
       <DTS:VariableValue DTS:DataType="8">
           EXECUTE [Audit].[PackageControlStart] @PackageName=?, @PackageId=?, 
           @ParentPackageId=?,@ExecutionId=?, @StartTime=?;
         </DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{C84220DB-1AEF-405B-89EE-5F414D399CAA}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QueryAuditUpdate">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{E6E25F0F-1770-4587-B265-6700040AE8C5}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="QueryAuditUpdate">
       <DTS:VariableValue DTS:DataType="8">
           EXECUTE [Audit].[PackageControlStop] @PackageId=?, @ExecutionId=?, 
           @InsertRowQuantity=?, @UpdateRowQuantity=?, @UnchangedRowQuantity=?;</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{89189961-FF85-492B-8F38-0882ECCF110B}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountChanged">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{252F5AAB-3B56-4BCC-9F21-10DDA1C2022A}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountChanged">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{118123A6-3D4B-463B-9FDD-A5373C811436}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountNew">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{F9D04BC1-23C2-4B4B-833D-324153A90FA4}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountNew">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{3602DAA3-665E-4275-AFEA-43422135526C}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountSource">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{E84B135E-BF76-4438-928A-B609713E7C21}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountSource">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{0F3EFBDA-AE92-4C23-B796-0EF13AF73AC5}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountUnchanged">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{AB416F99-F6F6-4AEF-A04B-EA579E1FB5C3}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="RowCountUnchanged">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{364D0C8D-DC5C-4D0D-8078-D8416E11C31B}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="SchemaName">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{37B2078F-E3EB-4D9C-8FA9-2B75BDDC96CB}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="SchemaName">
       <DTS:VariableValue DTS:DataType="8">Dim</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{54D640B6-FA66-4797-B5E3-8CFDBAFD1DA7}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="TableName">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{E5656330-88F8-47F3-91BA-E082F4240DEC}" DTS:IncludeInDebugDump="2345" DTS:Namespace="User" DTS:ObjectName="TableName">
       <DTS:VariableValue DTS:DataType="8">City</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{A85FFDC1-2E81-4517-9B3E-E4BFB613C22C}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Begin Audit" DTS:refId="Package\SQL Begin Audit" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{EBE6F2F7-E49B-4C0B-8CA5-8A17E8F19523}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Begin Audit" DTS:refId="Package\SQL Begin Audit" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
         <SQLTask:SqlTaskData SQLTask:Connection="Audit" SQLTask:SqlStatementSource="User::QueryAuditStart" SQLTask:SqlStmtSourceType="Variable" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
@@ -52,18 +52,18 @@
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{DAB40165-515A-4C0C-8DCA-AFB5358E9EE7}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Truncate UpdtCity" DTS:refId="Package\SQL Truncate UpdtCity" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{0D119711-1B3E-47AA-A1A6-FB7749C575C0}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Truncate UpdtCity" DTS:refId="Package\SQL Truncate UpdtCity" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
-        <SQLTask:SqlTaskData SQLTask:Connection="AWBIML" SQLTask:SqlStatementSource="Truncate Table [Updt].[UpdtCity]&#xA;            " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+        <SQLTask:SqlTaskData SQLTask:Connection="WWIDW" SQLTask:SqlStatementSource="Truncate Table [Updt].[UpdtCity]&#xA;            " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{B2AD54F5-91CA-4E93-BD0A-579B84618018}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="DFT InsertCity" DTS:refId="Package\DFT InsertCity" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{6E00D60B-F972-4E0F-84EE-37E462A32FF8}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="DFT InsertCity" DTS:refId="Package\DFT InsertCity" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
         <pipeline BLOBTempStoragePath="" bufferTempStoragePath="" name="pipelineXml" version="1">
           <components>
             <component componentClassID="Microsoft.OLEDBSource" contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7" name="OLE_SRC StgDimCity" refId="Package\DFT InsertCity\OLE_SRC StgDimCity" usesDispositions="true" version="7">
               <connections>
-                <connection connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external" connectionManagerRefId="Project.ConnectionManagers[AWBIML]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Connections[OleDbConnection]"></connection>
+                <connection connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external" connectionManagerRefId="Project.ConnectionManagers[WWIDW]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Connections[OleDbConnection]"></connection>
               </connections>
               <outputs>
                 <output name="Output" refId="Package\DFT InsertCity\OLE_SRC StgDimCity.Outputs[Output]">
@@ -148,7 +148,7 @@
             </component>
             <component componentClassID="Microsoft.Lookup" contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6" name="LKP Historical Key" refId="Package\DFT InsertCity\LKP Historical Key" usesDispositions="true" version="6">
               <connections>
-                <connection connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external" connectionManagerRefId="Project.ConnectionManagers[AWBIML]" description="Connection manager used to access lookup data." name="OleDbConnection" refId="Package\DFT InsertCity\LKP Historical Key.Connections[OleDbConnection]"></connection>
+                <connection connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external" connectionManagerRefId="Project.ConnectionManagers[WWIDW]" description="Connection manager used to access lookup data." name="OleDbConnection" refId="Package\DFT InsertCity\LKP Historical Key.Connections[OleDbConnection]"></connection>
               </connections>
               <inputs>
                 <input name="CNT Source_Rows_Output_LKP Historical Key" refId="Package\DFT InsertCity\LKP Historical Key.Inputs[CNT Source_Rows_Output_LKP Historical Key]">
@@ -231,7 +231,7 @@
             </component>
             <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="OLE_DST New_Rows" refId="Package\DFT InsertCity\OLE_DST New_Rows" usesDispositions="true" version="4">
               <connections>
-                <connection connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external" connectionManagerRefId="Project.ConnectionManagers[AWBIML]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT InsertCity\OLE_DST New_Rows.Connections[OleDbConnection]"></connection>
+                <connection connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external" connectionManagerRefId="Project.ConnectionManagers[WWIDW]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT InsertCity\OLE_DST New_Rows.Connections[OleDbConnection]"></connection>
               </connections>
               <inputs>
                 <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="CNT New_Rows_Output_OLE_DST New_Rows" refId="Package\DFT InsertCity\OLE_DST New_Rows.Inputs[CNT New_Rows_Output_OLE_DST New_Rows]">
@@ -357,7 +357,7 @@
             </component>
             <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="OLE_DST Update Table" refId="Package\DFT InsertCity\OLE_DST Update Table" usesDispositions="true" version="4">
               <connections>
-                <connection connectionManagerID="{A00915BD-5964-4CEB-B8CF-61297307E46B}:external" connectionManagerRefId="Project.ConnectionManagers[AWBIML]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT InsertCity\OLE_DST Update Table.Connections[OleDbConnection]"></connection>
+                <connection connectionManagerID="{3B39533B-D2F0-4791-977B-EBEBD5593A01}:external" connectionManagerRefId="Project.ConnectionManagers[WWIDW]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\DFT InsertCity\OLE_DST Update Table.Connections[OleDbConnection]"></connection>
               </connections>
               <inputs>
                 <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="CNT Changed_Rows_Output_OLE_DST Update Table" refId="Package\DFT InsertCity\OLE_DST Update Table.Inputs[CNT Changed_Rows_Output_OLE_DST Update Table]">
@@ -424,12 +424,12 @@
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{BE5DA2D6-E39B-403F-B7C3-B8D4930ADFD3}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Update City" DTS:refId="Package\SQL Update City" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{AD528506-13A2-44EF-9D86-3EDA6567D632}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Update City" DTS:refId="Package\SQL Update City" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
-        <SQLTask:SqlTaskData SQLTask:Connection="AWBIML" SQLTask:SqlStatementSource="UPDATE d &#xA;     SET &#xA;     d.CityName = u.CityName,&#xA;     d.StateProvinceCode = u.StateProvinceCode,&#xA;     d.StateProvinceName = u.StateProvinceName,&#xA;     d.CountryName = u.CountryName,&#xA;     d.Region = u.Region,&#xA;     d.Subregion = u.Subregion,&#xA;     d.changehashkey = u.changehashkey &#xA;     FROM Updt.UpdtCity u &#xA;     INNER JOIN Dim.City d ON u.HistoricalHashKey = d.HistoricalHashKey;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+        <SQLTask:SqlTaskData SQLTask:Connection="WWIDW" SQLTask:SqlStatementSource="UPDATE d &#xA;     SET &#xA;     d.CityName = u.CityName,&#xA;     d.StateProvinceCode = u.StateProvinceCode,&#xA;     d.StateProvinceName = u.StateProvinceName,&#xA;     d.CountryName = u.CountryName,&#xA;     d.Region = u.Region,&#xA;     d.Subregion = u.Subregion,&#xA;     d.changehashkey = u.changehashkey &#xA;     FROM Updt.UpdtCity u &#xA;     INNER JOIN Dim.City d ON u.HistoricalHashKey = d.HistoricalHashKey;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{C23ECD53-D29F-4B8A-96AA-1C1D0897E66A}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Close Audit" DTS:refId="Package\SQL Close Audit" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{763CDF58-9E82-4A6D-A7C8-5D739A0DD3EC}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="SQL Close Audit" DTS:refId="Package\SQL Close Audit" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
         <SQLTask:SqlTaskData SQLTask:Connection="Audit" SQLTask:SqlStatementSource="User::QueryAuditUpdate" SQLTask:SqlStmtSourceType="Variable" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding SQLTask:DataType="72" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
@@ -442,9 +442,9 @@
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{857D1B5B-512E-4F32-A338-FEF11BB910C8}" DTS:From="Package\SQL Begin Audit" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Begin Audit_To_SQL Truncate UpdtCity" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Begin Audit_To_SQL Truncate UpdtCity]" DTS:To="Package\SQL Truncate UpdtCity"></DTS:PrecedenceConstraint>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{B3AD9291-24BC-4B64-A5E4-DE93AF490CB5}" DTS:From="Package\SQL Truncate UpdtCity" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Truncate UpdtCity_To_DFT InsertCity" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Truncate UpdtCity_To_DFT InsertCity]" DTS:To="Package\DFT InsertCity"></DTS:PrecedenceConstraint>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{75267139-9ACB-40CE-AC97-43C9B7040544}" DTS:From="Package\DFT InsertCity" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_DFT InsertCity_To_SQL Update City" DTS:refId="Package.PrecedenceConstraints[Constraint_DFT InsertCity_To_SQL Update City]" DTS:To="Package\SQL Update City"></DTS:PrecedenceConstraint>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{F48BEC80-FAC0-42B7-8808-D96A3316B2EA}" DTS:From="Package\SQL Update City" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Update City_To_SQL Close Audit" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Update City_To_SQL Close Audit]" DTS:To="Package\SQL Close Audit"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{BFF4523E-A2FE-4C45-8CC1-A6A4D478AE8F}" DTS:From="Package\SQL Begin Audit" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Begin Audit_To_SQL Truncate UpdtCity" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Begin Audit_To_SQL Truncate UpdtCity]" DTS:To="Package\SQL Truncate UpdtCity"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{A900F10B-9DEF-4CDD-8B29-CF652B89BB61}" DTS:From="Package\SQL Truncate UpdtCity" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Truncate UpdtCity_To_DFT InsertCity" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Truncate UpdtCity_To_DFT InsertCity]" DTS:To="Package\DFT InsertCity"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{09AF5885-FE1D-4EF6-AAB9-1D3779882F56}" DTS:From="Package\DFT InsertCity" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_DFT InsertCity_To_SQL Update City" DTS:refId="Package.PrecedenceConstraints[Constraint_DFT InsertCity_To_SQL Update City]" DTS:To="Package\SQL Update City"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{C108094A-05E6-44B2-9F8D-53CC9AE7E341}" DTS:From="Package\SQL Update City" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_SQL Update City_To_SQL Close Audit" DTS:refId="Package.PrecedenceConstraints[Constraint_SQL Update City_To_SQL Close Audit]" DTS:To="Package\SQL Close Audit"></DTS:PrecedenceConstraint>
   </DTS:PrecedenceConstraints>
 </DTS:Executable>

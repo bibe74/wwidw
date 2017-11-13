@@ -4,16 +4,16 @@
 
 	<!--
 	<#
-	string PackageName  = "LoadDimCustomer";
+	string PackageName  = "02-LoadDimCustomer";
 	string DstSchemaName = "Dim";
 	string DstTableName = "Customer";
-	string DstConnection = "AWBIML";
+	string DstConnection = "WWIDW";
 	string DataFlowSourceName = "OLE_SRC StgDimCustomer";
-	string SrcConnection = "AWBIML";
+	string SrcConnection = "WWIDW";
 	string SourceQuery = @"SELECT * FROM Dim.CustomerView";
 	string UpdateSchemaName = "Updt";
 	string UpdateTableName = "UpdtCustomer";
-	string UpdateConnection = "AWBIML";
+	string UpdateConnection = "WWIDW";
 	string UpdateSQLStatement = @"UPDATE d 
 					SET 
 					d.CustomerName = u.CustomerName,

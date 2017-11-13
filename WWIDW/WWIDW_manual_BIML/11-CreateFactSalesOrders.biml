@@ -4,12 +4,12 @@
 
 	<!--
 	<#
-	string PackageName  = "LoadFactSalesOrders";
+	string PackageName  = "11-LoadFactSalesOrders";
 	string DstSchemaName = "Fact";
 	string DstTableName = "SalesOrders";
-	string DstConnection = "AWBIML";
+	string DstConnection = "WWIDW";
 	string DataFlowSourceName = "OLE_SRC StgFactSalesOrders";
-	string SrcConnection = "AWBIML";
+	string SrcConnection = "WWIDW";
 	string SourceQuery = @"SELECT * FROM Fact.SalesOrdersView";
 	#>
 	-->

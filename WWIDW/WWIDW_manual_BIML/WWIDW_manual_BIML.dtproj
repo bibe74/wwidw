@@ -26,17 +26,17 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">HARDY</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAmNm3K76sJUigWWF5ysnUlAAAAAACAAAAAAADZgAAwAAAABAAAABDhVXa4Bkb+6bCvqt+00tKAAAAAASAAACgAAAAEAAAAG39bIiu3TgV/dbMWbS3GXCIAAAA7qXAVKXq4yQZ0tFyIiWlYTr3DpMsWl7vcE4gLWFf9hKqz7dLf7KAUrc0m9X7E7BaLVgOPZB+BayAuwA8BfvIBa/bJk8ckmDkAOptE1iVBFZvlWoJCUiDk8WxHhiXh93hCia7B4Wo9JNAOx7lgW7MTs/Nap9ImdDQD4/eAkyxtIbTCDBfyPoEXxQAAAB3/h21EybLXBBJ+wVPjydzWEnWqQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAmNm3K76sJUigWWF5ysnUlAAAAAACAAAAAAADZgAAwAAAABAAAADrVW7CvP0mIbmlULyAmhHhAAAAAASAAACgAAAAEAAAAKm2rk/dKZg8U85L4oyCCxaIAAAAI+RZ+JAOFRUVItrDa1Nh9479rslbhjKnszKmz1PJ/4aaJINrvgES09HDvsPjKZfNB+SIq7Il366nfq6MMyn1sBlPrcVAAiAZlKDW4MnDCRluHBPb30rgMwfnIpEy1Z1gPik2ar1vTW+YRluhP1/BR57+Aq2dIu5vGvoYbqCbk/zIddGYqxJHhRQAAACCM4yjcfzJY01MLiB7q8ECC69bgQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="LoadDimCity.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="LoadDimCustomer.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="LoadFactSalesOrders.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="01-LoadDimCity.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="02-LoadDimCustomer.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="11-LoadFactSalesOrders.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="Audit.conmgr" />
-          <SSIS:ConnectionManager SSIS:Name="AWBIML.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="WWIDW.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters>
@@ -128,7 +128,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.AWBIML.ConnectionString">
+            <SSIS:Parameter SSIS:Name="CM.WWIDW.ConnectionString">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -143,7 +143,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.AWBIML.InitialCatalog">
+            <SSIS:Parameter SSIS:Name="CM.WWIDW.InitialCatalog">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -158,7 +158,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.AWBIML.Password">
+            <SSIS:Parameter SSIS:Name="CM.WWIDW.Password">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -172,7 +172,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.AWBIML.RetainSameConnection">
+            <SSIS:Parameter SSIS:Name="CM.WWIDW.RetainSameConnection">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -187,7 +187,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.AWBIML.ServerName">
+            <SSIS:Parameter SSIS:Name="CM.WWIDW.ServerName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -202,7 +202,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.AWBIML.UserName">
+            <SSIS:Parameter SSIS:Name="CM.WWIDW.UserName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -218,16 +218,16 @@
             </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="LoadDimCity.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="01-LoadDimCity.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{6A8D9289-F1B7-449B-9010-86E08BB1C0B2}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">LoadDimCity</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{9D5DE804-1960-40FB-8AAC-13D89C631E16}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">01-LoadDimCity</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{2E61D65F-7F27-4FE2-995B-39A294222144}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F666961C-417C-4495-A9B5-4FBF13314E65}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -236,7 +236,7 @@
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="ParentPackageID">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{F36728CC-652B-4921-A94E-F663CAB1A999}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{FC074605-02D8-404D-9D4D-6E9131A03B57}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -250,16 +250,16 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="LoadDimCustomer.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="02-LoadDimCustomer.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{C90348D8-31B6-48B3-8F94-4610A885ED83}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">LoadDimCustomer</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{E5CF1961-8530-4072-81C5-E6C5D897876C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">02-LoadDimCustomer</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{0EBAFB95-D5B4-4A1F-8AD3-744518B09761}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{FB0E48CE-5E97-475C-B8D1-81C18385D3B1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -268,7 +268,7 @@
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="ParentPackageID">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{023A697D-F516-4B89-BD49-71A8177C3057}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{677367DF-4B75-45F7-8E24-11894AC80554}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -282,16 +282,16 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="LoadFactSalesOrders.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="11-LoadFactSalesOrders.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{C3D9BAD2-80D3-4C5B-9063-D1015F6D722A}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">LoadFactSalesOrders</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{024153F8-3617-4E4F-A9CB-3544FAC79587}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">11-LoadFactSalesOrders</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{6DF3B460-2487-4BDA-92FA-A7E05E35CBE0}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{0A66AE9D-836E-4BB7-84FD-1EB6390613DF}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -300,7 +300,7 @@
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="ParentPackageID">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{37CD79E0-815D-49EE-8ABF-AA5EBD96C883}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{C860999C-EE5F-4B1F-98FE-18C1AD890C59}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -322,16 +322,16 @@
   <ControlFlowParts />
   <Miscellaneous>
     <ProjectItem>
-      <Name>CreateFactSalesOrders.biml</Name>
-      <FullPath>CreateFactSalesOrders.biml</FullPath>
+      <Name>11-CreateFactSalesOrders.biml</Name>
+      <FullPath>11-CreateFactSalesOrders.biml</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>CreateDimCity.biml</Name>
-      <FullPath>CreateDimCity.biml</FullPath>
+      <Name>01-CreateDimCity.biml</Name>
+      <FullPath>01-CreateDimCity.biml</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>CreateDimCustomer.biml</Name>
-      <FullPath>CreateDimCustomer.biml</FullPath>
+      <Name>02-CreateDimCustomer.biml</Name>
+      <FullPath>02-CreateDimCustomer.biml</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Dim1.biml</Name>
